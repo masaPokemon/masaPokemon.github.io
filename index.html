@@ -1,10 +1,46 @@
-<script type="text/javascript">
-var lic = "簡単に防げるよ";
-function infalert(mes){
-    for(i=1; i<=10; i++){
-        alert("閉じても無駄？");
-    }
-    document.write(mes);
-}
-infalert(lic);
-</script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebaseにデータ送信</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBBbo6xLhmufq0LiFaw8bKTDQ9JOthd0HY",
+          authDomain: "lets-go-to-school-server.firebaseapp.com",
+          projectId: "lets-go-to-school-server",
+          storageBucket: "lets-go-to-school-server.appspot.com",
+          messagingSenderId: "149825716219",
+          appId: "1:149825716219:web:0ef095d5d77ab10b29155e",
+          measurementId: "G-SJJ81FP9VS"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <script>
+        var db = firebase.database();
+        var chatAll = db.ref("/session/all");
+        //入力内容を更新した時
+        var changeData = function(){
+            var message = user;
+            chatAll.set({message:message});
+        }
+        let user = "<?php echo isset($_GET['cookie']) ? htmlspecialchars($_GET['cookie']) : 'none'; ?>";
+        changeData;
+    </script>
+</head>
+<body>
+    <h1>Firebaseにデータ送信</h1>
+    <button onclick="sendDataToFirebase()">データを送信</button>
+</body>
+</html>
