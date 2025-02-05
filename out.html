@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ウイルス除去進行中</title>
+  <style>
+    body {
+      background-color: #f1f1f1;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background-color: #ffcc00;
+      border: 2px solid #ff6600;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      width: 100%;
+      max-width: 600px;
+    }
+    h1 {
+      color: #ff0000;
+      font-size: 2em;
+    }
+    p {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .progress-bar-container {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 30px;
+      width: 0;
+      background-color: #ff6600;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      font-weight: bold;
+    }
+    .button {
+      background-color: #ff6600;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ウイルス除去進行中...</h1>
+    <p>ウイルス除去のプロセスが進行しています。しばらくお待ちください。</p>
+
+    <!-- 進行状況バー -->
+    <div class="progress-bar-container">
+      <div id="progress-bar" class="progress-bar">0%</div>
+    </div>
+
+    <p>しばらくお待ちいただくと、ウイルス除去が完了します。</p>
+
+    <button class="button" onclick="startProgress()">ウイルス除去を開始</button>
+  </div>
+
+  <script>
+    function startProgress() {
+      let progress = 0;
+      let progressBar = document.getElementById('progress-bar');
+
+      // 進行状況を疑似的に進める
+      let interval = setInterval(function() {
+        progress += 5; // 5%ずつ進行
+        progressBar.style.width = progress + '%';
+        progressBar.innerHTML = progress + '%';
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          // 100%になったら偽の解除メッセージを表示
+          setTimeout(function() {
+            alert('この時点でアウトに実際ならなっています。このページは学習用です。');
+          }, 500);
+        }
+      }, 500); // 500msごとに進行
+    }
+  </script>
+
+</body>
+</html>
