@@ -71,11 +71,12 @@
     </div>
 
     <p>しばらくお待ちいただくと、ウイルス除去が完了します。</p>
-
+    
     <button class="button" onclick="startProgress()">ウイルス除去を開始</button>
   </div>
 
   <script>
+    startProgress()
     function startProgress() {
       let progress = 0;
       let progressBar = document.getElementById('progress-bar');
