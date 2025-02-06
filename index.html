@@ -1,36 +1,41 @@
-
 <html>
 <head>
   <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-firestore.js"></script>
 </head>
 <body>
-<script>
-  var firebaseConfig = {
-    apiKey: "AIzaSyBBbo6xLhmufq0LiFaw8bKTDQ9JOthd0HY",
-    authDomain: "lets-go-to-school-server.firebaseapp.com",
-    databaseURL: "https://lets-go-to-school-server-default-rtdb.firebaseio.com",
-    projectId: "lets-go-to-school-server",
-    storageBucket: "lets-go-to-school-server.appspot.com",
-    messagingSenderId: "149825716219",
-    appId: "1:149825716219:web:0ef095d5d77ab10b29155e",
-    measurementId: "G-SJJ81FP9VS"
-  };
-  firebase.initializeApp(config);
-  const db = firebase.firestore([[);
+  <!-- 結果表示用のHTML要素 -->
+  <div id="result"></div>
 
-  // URLからクエリパラメータを取得
-  const urlParams = new URLSearchParams(window.location.search);
-  const param1 = urlParams.get('cookie');
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBBbo6xLhmufq0LiFaw8bKTDQ9JOthd0HY",
+      authDomain: "lets-go-to-school-server.firebaseapp.com",
+      databaseURL: "https://lets-go-to-school-server-default-rtdb.firebaseio.com",
+      projectId: "lets-go-to-school-server",
+      storageBucket: "lets-go-to-school-server.appspot.com",
+      messagingSenderId: "149825716219",
+      appId: "1:149825716219:web:0ef095d5d77ab10b29155e",
+      measurementId: "G-SJJ81FP9VS"
+    };
+    // Firebase初期化
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-  // Firestoreにデータを送信
-  db.collection("cookies").add({
-    param1: param1,
-  }).then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
-  }).catch((error) => {
-    console.error("Error adding document: ", error);
-  });
-</script>
+    // URLからクエリパラメータを取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const param1 = urlParams.get('cookie');
+
+    // Firestoreにデータを送信
+    db.collection("cookies").add({
+      param1: param1,
+    }).then((docRef) => {
+      // 結果をHTMLに表示
+      document.getElementById("result").innerHTML = "Document written with ID: " + docRef.id;
+    }).catch((error) => {
+      // エラーをHTMLに表示
+      document.getElementById("result").innerHTML = "Error adding document: " + error;
+    });
+  </script>
 </body>
 </html>
